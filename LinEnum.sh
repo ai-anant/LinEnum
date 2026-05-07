@@ -1,13 +1,13 @@
 #!/bin/bash
 #A script to enumerate local information from a Linux host
-version="version 0.982"
+version="version 1.0 - Enhanced by cuddiecoder"
 #@rebootuser
 
 #help function
 usage () 
 { 
 echo -e "\n\e[00;31m#########################################################\e[00m" 
-echo -e "\e[00;31m#\e[00m" "\e[00;33mLocal Linux Enumeration & Privilege Escalation Script\e[00m" "\e[00;31m#\e[00m"
+echo -e "\e[00;33m# Custom Enhancements by cuddiecoder \e[00m"
 echo -e "\e[00;31m#########################################################\e[00m"
 echo -e "\e[00;33m# www.rebootuser.com | @rebootuser \e[00m"
 echo -e "\e[00;33m# $version\e[00m\n"
@@ -112,6 +112,13 @@ if [ "$hostnamed" ]; then
   echo -e "\n" 
 fi
 }
+#disk usage information
+diskusage=`df -h 2>/dev/null`
+
+if [ "$diskusage" ]; then
+  echo -e "\e[00;31m[-] Disk Usage Information:\e[00m\n$diskusage"
+  echo -e "\n"
+fi
 
 user_info()
 {
@@ -1237,6 +1244,13 @@ if [ "$bakfiles" ]; then
   echo -e "\n"
 fi
 
+#check failed SSH login attempts
+failedssh=`grep "Failed password" /var/log/auth.log 2>/dev/null`
+
+if [ "$failedssh" ]; then
+  echo -e "\e[00;31m[-] Failed SSH Login Attempts:\e[00m\n$failedssh"
+  echo -e "\n"
+fi
 #is there any mail accessible
 readmail=`ls -la /var/mail 2>/dev/null`
 if [ "$readmail" ]; then
