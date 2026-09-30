@@ -1310,7 +1310,7 @@ fi
 lxdgroup=`id | grep -i lxd 2>/dev/null`
 if [ "$lxdgroup" ]; then
   echo -e "\e[00;33m[+] We're a member of the (lxd) group - could possibly misusse these rights!"
-  echo -e "\e[00;33See: https://book.hacktricks.xyz/linux-unix/privilege-escalation/lxd-privilege-escalation\e[00m\n$lxdgroup"
+  echo -e "\e[00;33mSee: https://book.hacktricks.xyz/linux-unix/privilege-escalation/lxd-privilege-escalation\e[00m\n$lxdgroup"
   echo -e "\n"
 fi
 }
